@@ -1,0 +1,16 @@
+{
+  "name": "future-suite",
+  "version": "1.0.0",
+  "description": "Future Suite coming soon landing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "build": "echo \"Static only\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

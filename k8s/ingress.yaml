@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: future-suite
+  namespace: future-suite
+  labels:
+    app: future-suite
+  # annotations for TLS or controller-specific config can be added here
+  # e.g. cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  rules:
+    # Replace with your host when you have a domain
+    - host: future-suite.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: future-suite
+                port:
+                  number: 80
+  # Uncomment and set tls when you have certs
+  # tls:
+  #   - hosts:
+  #       - future-suite.example.com
+  #     secretName: future-suite-tls
