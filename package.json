@@ -1,7 +1,7 @@
 {
   "name": "future-suite",
   "version": "1.0.0",
-  "description": "Future Suite coming soon landing",
+  "description": "Future Suite landing",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -11,6 +11,7 @@
     "node": ">=20"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.21.0"
   }
 }
