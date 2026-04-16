@@ -1,20 +1,20 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: future-suite
-  namespace: future-suite
+  name: sf-digital
+  namespace: sf-digital-qa
   annotations:
     # Cloudflare terminates TLS — Traefik only needs HTTP (port 80)
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-    - host: www.futuresuite.ai
+    - host: www-stg.futuresuite.ai
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: future-suite
+                name: sf-digital
                 port:
                   number: 80

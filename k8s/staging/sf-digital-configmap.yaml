@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sf-digital-config
+  namespace: sf-digital-qa
+data:
+  ENV: "prod"
+  DEPLOY_ENV: "staging"
+  PORT: "8080"
+  APP_DISPLAY_NAME: "SF Digital (QA)"
+  APP_IDENTIFIER: "sf-digital-qa"

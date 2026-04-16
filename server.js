@@ -6,30 +6,30 @@ const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
-const APP_DISPLAY_NAME = process.env.APP_DISPLAY_NAME || 'Future Suite (DEV)';
-const APP_IDENTIFIER = process.env.APP_IDENTIFIER || 'future-suite-dev';
+const APP_DISPLAY_NAME = process.env.APP_DISPLAY_NAME || 'SF Digital (DEV)';
+const APP_IDENTIFIER = process.env.APP_IDENTIFIER || 'sf-digital-dev';
 
 const pillarUrls = {
   production: {
-    privateLLM: 'https://jaco.manifest.network',
-    portfolio: 'https://www.sumascan.ai',
+    privateLLM: 'https://agent1.manifest.network',
+    portfolio: 'https://app.sumascan.ai',
     aiTools: 'https://manifest.network',
   },
   staging: {
-    privateLLM: 'https://jaco-stg.manifest.network',
-    portfolio: 'https://www.sumascan.ai',
+    privateLLM: 'https://agent1.manifest.network',
+    portfolio: 'https://app.sumascan.ai',
     aiTools: 'https://manifest.network',
   },
   dev: {
-    privateLLM: 'https://jaco-stg.manifest.network',
-    portfolio: 'https://www.sumascan.ai',
+    privateLLM: 'https://agent1.manifest.network',
+    portfolio: 'https://app.sumascan.ai',
     aiTools: 'https://manifest.network',
   },
 };
 
 function getPillarUrls() {
-  if (APP_IDENTIFIER === 'future-suite') return pillarUrls.production;
-  if (APP_IDENTIFIER === 'future-suite-qa') return pillarUrls.staging;
+  if (APP_IDENTIFIER === 'sf-digital') return pillarUrls.production;
+  if (APP_IDENTIFIER === 'sf-digital-qa') return pillarUrls.staging;
   return pillarUrls.dev;
 }
 

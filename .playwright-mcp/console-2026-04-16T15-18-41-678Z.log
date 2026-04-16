@@ -1,0 +1,2 @@
+[      -1ms] [ERROR] Failed to load resource: the server responded with a status of 503 () @ https://agent1-stg.manifest.network/:0
+[     378ms] [ERROR] Failed to load resource: the server responded with a status of 503 () @ https://agent1-stg.manifest.network/favicon.ico:0

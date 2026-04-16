@@ -1,10 +1,10 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: future-suite
-  namespace: future-suite-qa
+  name: sf-digital
+  namespace: sf-digital
   labels:
-    app: future-suite
+    app: sf-digital
 spec:
   replicas: 1
   strategy:
@@ -14,22 +14,22 @@ spec:
       maxSurge: 1
   selector:
     matchLabels:
-      app: future-suite
+      app: sf-digital
   template:
     metadata:
       labels:
-        app: future-suite
+        app: sf-digital
     spec:
       containers:
-        - name: future-suite
-          image: future-suite:latest
+        - name: sf-digital
+          image: sf-digital:latest
           imagePullPolicy: Never
           ports:
             - containerPort: 8080
               name: http
           envFrom:
             - configMapRef:
-                name: future-suite-config
+                name: sf-digital-config
           livenessProbe:
             httpGet:
               path: /

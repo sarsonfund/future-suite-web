@@ -1,7 +1,7 @@
 {
-  "name": "future-suite",
+  "name": "sf-digital",
   "version": "1.0.0",
-  "description": "Future Suite landing",
+  "description": "SF Digital landing",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

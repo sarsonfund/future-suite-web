@@ -7,164 +7,8 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
     <link rel="manifest" href="/site.webmanifest">
-    <style>
-        :root {
-            --navy: #0a0f1d;
-            --gold-gradient: linear-gradient(135deg, #f1d592, #d4af37, #8a6d29);
-            --gold-grid: rgba(212, 175, 55, 0.4);
-            --white-grid: rgba(255, 255, 255, 0.15);
-        }
-
-        body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--navy);
-            font-family: 'Segoe UI', sans-serif;
-            color: white;
-            overflow: hidden;
-            perspective: 1200px; 
-        }
-
-        /* 3D GRID CONTAINER */
-        .grid-perspective-wrap {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            overflow: hidden;
-            background: radial-gradient(circle at 90% 10%, #1a2235 0%, #0a0f1d 85%);
-        }
-
-        .grid-plane {
-            position: absolute;
-            width: 400%;
-            height: 400%;
-            top: -150%;
-            left: -150%;
-            background-image: 
-                linear-gradient(var(--gold-grid) 2px, transparent 2px),
-                linear-gradient(90deg, var(--white-grid) 1px, transparent 1px);
-            background-size: 80px 80px;
-            transform: rotateX(65deg) rotateY(0deg) rotateZ(25deg);
-            animation: moveTowardsHorizon 5s linear infinite;
-        }
-
-        @keyframes moveTowardsHorizon {
-            from { background-position: 0 0; }
-            to { background-position: 0 -80px; }
-        }
-
-        /* HEADER */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            padding: 40px 60px;
-            display: flex;
-            align-items: center;
-            box-sizing: border-box;
-            z-index: 100;
-        }
-
-        .brand-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-mark {
-            width: 35px;
-            height: 35px;
-            border: 2px solid #d4af37;
-            position: relative;
-            background: rgba(212, 175, 55, 0.1);
-        }
-
-        .logo-mark::after {
-            content: '';
-            position: absolute;
-            width: 70%;
-            height: 2px;
-            background: var(--gold-gradient);
-            top: 50%;
-            left: 15%;
-            transform: rotate(-45deg);
-        }
-
-        .brand-name {
-            font-weight: 800;
-            letter-spacing: 5px;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            font-size: 1.1rem;
-        }
-
-        /* HERO AREA */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: radial-gradient(circle, rgba(10, 15, 29, 0.2) 0%, rgba(10, 15, 29, 0.9) 100%);
-        }
-
-        h1 {
-            font-size: clamp(3rem, 10vw, 6rem);
-            font-weight: 900;
-            letter-spacing: 20px;
-            margin: 0;
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            padding-left: 20px;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
-        }
-
-        .divider {
-            width: 200px;
-            height: 1px;
-            background: var(--gold-gradient);
-            margin: 40px 0;
-            opacity: 0.8;
-        }
-
-        /* PILLAR NAVIGATION BLOCKS */
-        .pillar-container {
-            display: flex;
-            gap: 30px;
-            margin-top: 10px;
-        }
-
-        .pillar {
-            position: relative;
-            padding: 15px 35px;
-            border: 1px solid #d4af37;
-            background: rgba(212, 175, 55, 0.05);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #d4af37;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .pillar:hover {
-            background: rgba(212, 175, 55, 0.15);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
-        }
-
-    </style>
+    <link rel="stylesheet" href="/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -179,17 +23,53 @@
         </div>
     </header>
 
-    <div class="hero">
-        <div style="letter-spacing: 8px; opacity: 0.9; margin-bottom: 10px; font-size: 0.8rem; color: #d4af37;">INTELLIGENCE SECURED</div>
-        <h1>__APP_DISPLAY_NAME__</h1>
-        <div class="divider"></div>
-        
-        <div class="pillar-container">
-            <a class="pillar" href="__PILLAR_URL_PRIVATE_LLM__" target="_blank" rel="noopener noreferrer">Private LLM</a>
-            <a class="pillar" href="__PILLAR_URL_PORTFOLIO__" target="_blank" rel="noopener noreferrer">Portfolio Tracking</a>
-            <a class="pillar" href="__PILLAR_URL_AI_TOOLS__" target="_blank" rel="noopener noreferrer">AI Tools</a>
+    <main>
+        <section class="hero">
+            <div class="tagline">INTELLIGENCE SECURED</div>
+            <h1>__APP_DISPLAY_NAME__</h1>
+            <div class="divider"></div>
+
+            <div class="pillar-container">
+                <a class="pillar" href="__PILLAR_URL_PRIVATE_LLM__" target="_blank" rel="noopener noreferrer">Private LLM</a>
+                <a class="pillar" href="__PILLAR_URL_PORTFOLIO__" target="_blank" rel="noopener noreferrer">Portfolio Tracking</a>
+                <a class="pillar" href="__PILLAR_URL_AI_TOOLS__" target="_blank" rel="noopener noreferrer">AI Tools</a>
+            </div>
+        </section>
+
+        <section class="about">
+            <div class="about-content">
+                <h2>What We Do</h2>
+                <div class="divider"></div>
+                <p>SF Digital delivers secure, self-hosted AI infrastructure and intelligent tooling for teams that refuse to compromise on data sovereignty. From private language models to portfolio analytics, every product is built with privacy at the core.</p>
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>Private by Design</h3>
+                        <p>Your data never leaves your infrastructure. Every model, every query, every insight stays under your control.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Enterprise Ready</h3>
+                        <p>Production-grade deployments with monitoring, scaling, and the reliability your team depends on.</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>Open Standards</h3>
+                        <p>Built on open-source foundations. No vendor lock-in, no black boxes, no surprises.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">__APP_DISPLAY_NAME__</div>
+            <div class="footer-links">
+                <a href="__PILLAR_URL_PRIVATE_LLM__" target="_blank" rel="noopener noreferrer">Private LLM</a>
+                <a href="__PILLAR_URL_PORTFOLIO__" target="_blank" rel="noopener noreferrer">Portfolio Tracking</a>
+                <a href="__PILLAR_URL_AI_TOOLS__" target="_blank" rel="noopener noreferrer">AI Tools</a>
+            </div>
+            <div class="footer-copy">&copy; 2026 SF Digital. All rights reserved.</div>
         </div>
-    </div>
+    </footer>
 
 </body>
 </html>

@@ -1,0 +1,317 @@
+:root {
+    --navy: #0a0f1d;
+    --gold-gradient: linear-gradient(135deg, #f1d592, #d4af37, #8a6d29);
+    --gold-grid: rgba(212, 175, 55, 0.4);
+    --white-grid: rgba(255, 255, 255, 0.15);
+    --gold: #d4af37;
+    --gold-light: #f1d592;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: var(--navy);
+    font-family: 'Segoe UI', sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* 3D GRID CONTAINER */
+.grid-perspective-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: radial-gradient(circle at 90% 10%, #1a2235 0%, #0a0f1d 85%);
+}
+
+.grid-plane {
+    position: absolute;
+    width: 400%;
+    height: 400%;
+    top: -150%;
+    left: -150%;
+    background-image:
+        linear-gradient(var(--gold-grid) 2px, transparent 2px),
+        linear-gradient(90deg, var(--white-grid) 1px, transparent 1px);
+    background-size: 80px 80px;
+    transform: rotateX(65deg) rotateY(0deg) rotateZ(25deg);
+    animation: moveTowardsHorizon 5s linear infinite;
+}
+
+@keyframes moveTowardsHorizon {
+    from { background-position: 0 0; }
+    to { background-position: 0 -80px; }
+}
+
+/* HEADER */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 40px 60px;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+.brand-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-mark {
+    width: 35px;
+    height: 35px;
+    border: 2px solid var(--gold);
+    position: relative;
+    background: rgba(212, 175, 55, 0.1);
+}
+
+.logo-mark::after {
+    content: '';
+    position: absolute;
+    width: 70%;
+    height: 2px;
+    background: var(--gold-gradient);
+    top: 50%;
+    left: 15%;
+    transform: rotate(-45deg);
+}
+
+.brand-name {
+    font-weight: 800;
+    letter-spacing: 5px;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+
+/* HERO AREA */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: radial-gradient(circle, rgba(10, 15, 29, 0.2) 0%, rgba(10, 15, 29, 0.9) 100%);
+}
+
+.tagline {
+    letter-spacing: 8px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: var(--gold);
+}
+
+h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 900;
+    letter-spacing: 20px;
+    margin: 0;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    padding-left: 20px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.divider {
+    width: 200px;
+    height: 1px;
+    background: var(--gold-gradient);
+    margin: 40px 0;
+    opacity: 0.8;
+}
+
+/* PILLAR NAVIGATION BLOCKS */
+.pillar-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.pillar {
+    position: relative;
+    padding: 15px 35px;
+    border: 1px solid var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    display: inline-block;
+}
+
+.pillar:hover {
+    background: rgba(212, 175, 55, 0.15);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+}
+
+/* ABOUT SECTION */
+.about {
+    position: relative;
+    padding: 120px 40px;
+    background: linear-gradient(180deg, rgba(10, 15, 29, 0.95) 0%, rgba(10, 15, 29, 0.98) 100%);
+}
+
+.about-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.about .divider {
+    margin: 30px auto;
+}
+
+.about > .about-content > p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.about-card {
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    background: rgba(212, 175, 55, 0.03);
+    padding: 40px 30px;
+    transition: all 0.3s ease;
+}
+
+.about-card:hover {
+    border-color: rgba(212, 175, 55, 0.5);
+    background: rgba(212, 175, 55, 0.06);
+}
+
+.about-card h3 {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 15px;
+}
+
+.about-card p {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+/* FOOTER */
+footer {
+    position: relative;
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+    background: rgba(10, 15, 29, 0.98);
+    padding: 50px 40px;
+}
+
+.footer-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-brand {
+    font-weight: 800;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    background: var(--gold-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+}
+
+.footer-copy {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 1px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    header {
+        padding: 20px 30px;
+    }
+
+    .pillar-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    h1 {
+        letter-spacing: 10px;
+        padding-left: 10px;
+    }
+
+    .about {
+        padding: 80px 20px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

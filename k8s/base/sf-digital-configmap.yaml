@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sf-digital-config
+  namespace: sf-digital
+data:
+  ENV: "prod"
+  DEPLOY_ENV: "production"
+  PORT: "8080"
+  APP_DISPLAY_NAME: "SF Digital"
+  APP_IDENTIFIER: "sf-digital"
