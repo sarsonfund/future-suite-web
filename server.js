@@ -50,6 +50,58 @@ app.get('/index.html', sendIndex);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
+// --- Prompt cron: sends a crypto prompt to agent1 every 15 minutes ---
+const AGENT1_API_KEY = process.env.AGENT1_API_KEY;
+const AGENT1_URL = 'https://agent1.manifest.network/v1/chat/completions';
+const CRON_INTERVAL_MS = 15 * 60 * 1000;
+
+const prompts = JSON.parse(fs.readFileSync(path.join(__dirname, 'prompts.json'), 'utf8'));
+let promptIndex = 0;
+
+async function sendPrompt() {
+  if (!AGENT1_API_KEY) {
+    console.log('[cron] AGENT1_API_KEY not set, skipping');
+    return;
+  }
+
+  const prompt = prompts[promptIndex % prompts.length];
+  console.log(`[cron] Sending prompt ${promptIndex + 1}/${prompts.length}: "${prompt.slice(0, 60)}..."`);
+
+  try {
+    const res = await fetch(AGENT1_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${AGENT1_API_KEY}`,
+      },
+      body: JSON.stringify({
+        model: 'default',
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      const reply = data.choices?.[0]?.message?.content?.slice(0, 100) || '(no content)';
+      console.log(`[cron] Response OK: "${reply}..."`);
+    } else {
+      console.error(`[cron] Response error: ${res.status} ${res.statusText}`);
+    }
+  } catch (err) {
+    console.error(`[cron] Request failed: ${err.message}`);
+  }
+
+  promptIndex++;
+}
+
 app.listen(PORT, () => {
   console.log(`${APP_DISPLAY_NAME} listening on port ${PORT}`);
+
+  if (AGENT1_API_KEY) {
+    console.log(`[cron] Prompt cron active — ${prompts.length} prompts, every 15 min`);
+    sendPrompt();
+    setInterval(sendPrompt, CRON_INTERVAL_MS);
+  } else {
+    console.log('[cron] AGENT1_API_KEY not set — prompt cron disabled');
+  }
 });
